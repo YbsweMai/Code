@@ -1,0 +1,19 @@
+.exContent {
+    width : 100%;
+    height : 500px;
+}
+
+.ex-box {
+    display : flex;
+    align-items : center;
+    justify-content : space-between;
+    height : 100px;
+    margin-bottom : 10px;
+    border-bottom : 1px solid #3c3c3c;
+}
+
+.ex-box h4 {
+    width : 650px;
+    font-weight : 400;
+    color : #3c3c3c;
+}

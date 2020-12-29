@@ -1,0 +1,36 @@
+.center {
+    box-sizing : border-box;
+    display : flex;
+}
+
+.center img {
+    width : 100px;
+    height : 100px;
+    border-radius : 50%;
+  }
+
+  .userInfo {
+    flex-wrap : wrap;
+  }
+
+  .info {
+    display : flex;
+    align-items : center;
+    height : 100px;
+    font-size : 16px;
+  }
+
+  .info1 {
+    width : 100px;
+    text-align : center;
+  }
+
+  .info2 {
+    width : 200px;
+  }
+
+  .change {
+    margin-left : 10px;
+    color : blue;
+    cursor : pointer;
+  }

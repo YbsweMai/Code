@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 类方式声明组件</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example">
+
+    </div>
+    <script type="text/babel">  // jsx语法需要转义
+
+
+    /* 类似于Vue里的页面组件 */
+    class ArrayElements extends React.Component {
+        constructor(){
+            super()
+        }
+
+        render(){
+            const eles = [
+                <h1>1</h1>,
+                <h1>2</h1>,
+                // <span>{this.props.name}</span>
+
+            ]
+
+            // return eles
+            return(
+                /* react的类名需要写成className */
+                <div className={'test'}>  
+                    <div>{this.props.name}</div>
+
+                    { eles }
+
+                    <Child name='KK'/>  
+                </div>
+            )
+        }
+    }
+
+    /* 嵌套组件 */
+    class Child extends React.Component {
+        constructor(){
+            super()
+        }
+
+        render(){
+            return(
+                <div>
+                    This is {this.props.name}
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <ArrayElements name={ 'KK' }/>,
+        document.getElementById('example')
+    );
+    </script>
+  </body>
+</html>

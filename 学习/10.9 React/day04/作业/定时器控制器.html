@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 定时器控制器</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  </head>
+  <body>
+    <div id="example">
+
+    </div>
+    
+    <script type="text/babel">
+
+    class App extends React.Component{
+
+        constructor(){
+            
+            super()
+            this.state = {
+                count1:0,
+                init1:'start',
+                flag1:true,
+
+                count2:0,
+                init2:'start',
+                flag2:true,
+
+                inputStep:0,
+                inputTime:1000
+            }
+        }    
+
+               /* 挂载前 */
+        componentWillMount(){
+
+            console.log(' Child componentWillMount ');
+        }
+
+            /* 设置定时器 */
+            click1= ()=>{
+
+                this.setState({
+                    flag1:!this.state.flag1,
+                })
+
+                console.log('click1',this.state.flag1)
+
+                if(this.state.flag1 === true){
+                    this.timer1 = setInterval(() => {      
+                    this.setState({                   
+                        count1 : this.state.count1 + 1 
+                    })
+                }, 1000);
+                }else{
+                    clearInterval(this.timer1)
+                    clearInterval(this.changeTimer1)
+
+                }  
+            } 
+
+            click2= ()=>{
+
+                this.setState({
+                    flag2:!this.state.flag2,
+                })
+
+                console.log('click2',this.state.flag2)
+
+                if(this.state.flag2 === true){
+                    this.timer2 = setInterval(() => {      
+                    this.setState({                   
+                        count2 : this.state.count2 + 1
+                    })
+                }, 1000);
+                }else{
+                    clearInterval(this.timer2)
+                }  
+            } 
+   
+            /* 修改控制定时器 */
+
+            change= ()=>{
+                /* 第一次进来清除前面的计时器 否则修改计时后会造成2次计时 */ 
+
+                this.changeTimer1 = setInterval(() => {  
+                    clearInterval(this.timer1)
+                    this.setState({           
+                        count1 : this.state.count1 + Number(this.state.inputStep),
+                    })
+                }, this.state.inputTime);
+                /* 两次修改后计时器会重复计时 */
+
+                // this.changeTimer2 = setInterval(() => {  
+                //     clearInterval(this.timer2)
+                //     this.setState({                   
+                //         count2 : this.state.count2 + Number(this.state.inputStep),
+                //     })
+                // }, this.state.inputTime);
+            }
+
+        componentWillReceiveProps(nextProps){
+            console.log('child','componentWillReceiveProps')
+        }
+
+        /* 销毁后 */
+        componentWillUnmount(){
+
+            console.log(' Child componentWillUnmount ');
+
+            /*  需要销毁监听器  否则报错 */
+            // clearInterval(this.timer)
+            // clearInterval(this.dateTimer)
+        }
+        
+        bindStep =(e)=>{
+            this.setState({
+                inputStep : e.target.value
+            },()=>{
+                console.log(this.state)
+            })
+        }
+
+        bindTime =(e)=>{
+            this.setState({
+                inputTime : e.target.value
+            },()=>{
+                console.log(this.state)
+            })
+        }
+        
+        render(){
+
+            return  (
+                <div>
+                    <h3>控制器:</h3>
+
+                    <select onChange={
+
+                        (e)=>{
+
+                            this.setState({
+                                clock:{
+                                ...this.state.clock,
+                                num:e.target.value
+                                }
+                            })
+                        }
+                    }>
+                        <option value='1'>定时器1</option>
+                        <option value='2'>定时器2</option>
+                    </select>
+
+                    <div>
+                        step: <input type="text" value={ this.state.inputStep } onChange={ this.bindStep }/>    
+                    </div>
+
+                    <div>
+                        time: <input type="text" value={ this.state.inputTime } onChange={ this.bindTime }/>    
+                    </div>
+
+                    <div>
+                        <button onClick={ this.change }>修改</button>    
+                    </div>
+
+                    <div>定时器1:{ this.state.count1 }</div>
+                    <button onClick={ this.click1 }>{ this.state.flag1 ? 'start' : 'stop' }</button>
+                    <div>定时器2:{ this.state.count2 }</div>
+                    <button onClick={ this.click2 }>{ this.state.flag2 ? 'start' : 'stop' }</button>
+                </div>
+            )
+            
+        }
+    }
+
+    
+
+
+    ReactDOM.render(
+        <App />,
+        document.getElementById('example')
+    );
+
+    </script>
+  </body>
+</html>

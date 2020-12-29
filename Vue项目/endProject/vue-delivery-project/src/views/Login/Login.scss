@@ -1,0 +1,50 @@
+@import '../../style//style.scss';
+
+.header-children {
+    position : relative;
+    top : 100px;
+}
+
+div {
+    cursor : default;
+}
+
+.center-box {
+    display : flex;
+    align-items : center;
+    justify-content : center;
+    width : 100%;
+    height : calc(100vh - 98px);
+}
+
+.login-input-box {
+    width : 450px;
+}
+
+.input-Title{
+    font-family : PingFangSC-Regular;
+    font-size : 25px;
+    font-style : normal;
+    font-weight : 400;
+    font-stretch : normal;
+    line-height : 1.5;
+    letter-spacing : normal;
+}
+
+.input{
+    border : none;
+    border-bottom : 1px solid #202020;
+    outline : none;
+}
+
+.login-btn, .sign-up-btn {
+    width : 300px;
+    margin-top : 30px;
+}
+
+.sign-up-btn {
+    color : #202020;
+    background-color : #fff;
+}
+
+

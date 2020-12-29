@@ -1,0 +1,38 @@
+/* header{
+    flex-wrap: wrap;
+} */
+
+.header-top{
+    flex-wrap: wrap;
+    background-color: rgba(64, 75, 97, 0.9);
+    z-index: 99;
+}
+
+.header-btn{
+    display: flex;
+    margin-right: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 30px;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid white;
+    outline: none;
+}
+
+.header-right{
+    display: none;
+    flex-direction: column;
+    order: 2;
+    width: 100vw;
+    background-color:#414B62;
+    z-index: 99;
+    /* height: 300px; */
+}
+
+
+.header-nav{
+    height: 64px;
+    line-height: 64px;
+}

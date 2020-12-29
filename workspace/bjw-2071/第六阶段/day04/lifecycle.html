@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 实例</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div id="example">
+
+    </div>
+    
+    <script type="text/babel">
+
+    class App extends React.Component{
+
+        constructor(){
+            super()
+            this.state = {
+                count: 0,
+                flag:false
+            }
+        }    
+ 
+        render(){
+
+            return  (
+                <div>
+                    <Child count={ this.state.count } flag={this.state.flag}/>
+
+                    <div>
+                        <input type="text" value={this.state.count} onChange={ (e)=>{ this.setState({
+                            count:e.target.value
+                        })}}/>    
+                    </div>
+                    <button onClick={ ()=>{ this.setState({ flag: !this.state.flag })}}> click </button>
+                </div>
+            )
+            
+        }
+    }
+
+    class Child extends React.Component{
+
+            constructor(){
+                super()
+
+                this.state = {
+                    count: 0,
+                    date:new Date()
+                }
+            }    
+
+            componentWillMount(){
+
+                console.log(' Child componentWillMount ');
+            }
+
+            componentDidMount(){
+
+                console.log( ' Child componentDidMount ');
+
+                this.timer = setInterval(()=>{
+
+                    this.setState({
+                        count: this.state.count + 1
+                    })
+                },1000)
+
+                console.log(this.state.date);
+                this.dateTimer = setInterval(()=>{
+
+                    this.setState({
+                        date: new Date()
+                    })
+                },1000)
+            }
+
+            componentWillReceiveProps(nextProps){
+
+                console.log(' Child componentWillReceiveProps ');
+                if(this.props.flag !== nextProps.flag){
+                    this.setState({
+                        count: Number(nextProps.count)
+                    })
+                }
+            }
+
+             // 组件即将被更新时触发
+             componentWillUpdate(){
+
+                console.log(' Child componentWillUpdate ');
+
+            }
+
+            // 组件被更新完成后触发。页面中产生了新的DOM的元素，可以进行DOM操作
+            componentDidUpdate(){
+
+                console.log(' Child  componentDidUpdate ');
+
+            }
+
+            componentWillUnmount(){
+
+                console.log( ' Child componentWillUnmount ');
+
+                clearInterval(this.timer);
+
+                clearInterval(this.dateTimer);
+            }
+
+            render(){
+
+                
+                return  (   
+                    <div>
+                            <div>
+                                计数器： { this.state.count }
+                            </div>
+                            <div>
+                                时间： { moment(this.state.date).format('hh:mm:ss') }
+                            </div>
+                    </div>
+                )
+                
+            }
+    }
+
+
+    ReactDOM.render(
+        <App />,
+        document.getElementById('example')
+    );
+
+    </script>
+  </body>
+</html>

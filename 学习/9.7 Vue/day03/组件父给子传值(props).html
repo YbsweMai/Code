@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+
+    let proItem ={
+
+        template:`
+            <div>
+                <h1>{{aaa}}</h1>
+                <p>{{name}}</p>
+                <p>{{price}}</p>
+            </div>
+        `,
+        // props:['name','price']
+        props:{
+            name:{
+                type:String,
+                require:true
+            },
+            price:{
+                type:[Number,String],
+                require:true,
+                validator(value){
+                    return ['success','warning','danger'].indexOf[value] != -1
+                }
+            },
+            aaa:{
+                type:String,
+                require:true,
+                validator(value){
+                    return ['success','warning','danger'].indexOf[value] != -1
+                }
+            }
+        }
+    }
+
+    let App = {
+        template:`
+            <div class="father">
+                <div v-for="item in list">
+                    <pro-Item :name="item.name" :price="item.price" :aaa="'index'"></pro-Item>    
+                </div>
+            </div>
+        `,
+        /*1. :name 是 v-bind:name简写 给item.name取名为name 2. */
+        data(){
+            return{
+                list:[
+                    { name:'红楼梦',price:'50'},
+                    { name:'西游记',price:'60'},
+                    { name:'三国演义',price:'70'},
+                    { name:'水浒传',price:'80'}
+                ]
+            }
+        },
+        components:{
+            'pro-Item':proItem
+        }
+    }
+
+    new Vue({
+        render: h => h(App)
+    }).$mount('#app')
+</script>
+</html>

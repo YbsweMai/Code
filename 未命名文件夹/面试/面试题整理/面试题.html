@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>面试题</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        * {
+            box-sizing : border-box;
+            padding : 0;
+            margin : 0;
+        }
+        .container{
+            padding : 50px;
+        }
+        .row {
+            padding-bottom : 90px;
+        }
+        .row h1{
+            padding-bottom : 12px;
+            font-size : 20px;
+            font-weight : 500;
+            line-height : 32px;
+            color : #444;
+            text-decoration : underline;
+            letter-spacing : 1px;
+        }
+        .row h2{
+            padding : 8px 0;
+            font-size : 16px;
+            font-weight : 400;
+            line-height : 28px;
+            color : #232323;
+            letter-spacing : 1px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+
+        <div class="row" v-for="item in list">
+            <h1>{{ item.title }}</h1>
+            <h2 v-for="obj in item.content">{{ obj }}</h2>
+            <div v-if="item.img&&item.img.length">
+                <img v-for="imgobj in item.img" :src="imgobj" alt="">
+            </div>
+        </div>
+        <!-- 面试结束问题 -->
+        <div class="row" v-for="item in array">
+            <h1>{{ item.title }}</h1>
+            <h2 v-for="obj in item.content">{{ obj }}</h2>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                list: [
+                    {
+                        title: `dom 和 虚拟 dom 的的区别`,
+                        content: [
+                            `dom：浏览器中提供的概念，用JS对象表示页面上的元素，并提供了操作元素的api。`,
+                            `用就是对象来模拟dom元素和嵌套关系`,
+                            `目的： 实现页面元素的高效更新。`,
+                            `===========================================================================`,
+                            `虚拟dom简单来说就是一个普通的JavaScript对象，包含tag，props，children三个属性`,
+                            `虚拟DOM是相对于浏览器渲染出来的真实DOM，为了解决浏览器性能问题而设计出来的。`,
+                            `直接操作真实DOM是非常消耗性能的，会引起重绘和回流，比如10次DOM更新，浏览器会执行10次，如果有重复操作或者上一个更新操作的节点发生了变化，则相当于做了无用功。`,
+                            `在vue中，采用的是虚拟 dom 通过重写 setter ， getter 实现观察者监听 data 属性的变化生成新的虚拟 dom 通过 h 函数创建真实 dom 替换掉dom树上对应的旧 dom。,`
+                        ]
+                    },
+                    {
+                        title: `现在我要执行一步dom操作，那么这个操作，我放到那个周期里执行比较合适`,
+                        content: [
+                            `mounted : 因为这个周期里DOM元素已经被创建完毕`,
+                            `this.$nextTick() 将回调延迟到下次 DOM 更新循环之后执行`,
+                            `created : 组件实例创建完成，属性已绑定，此时DOM还未生成`,
+                            `beforeCreate : 组件刚被创建，组建属性计算之前，如data属性等`
+                        ]
+                    },
+                    {
+                        title: `刚提到你项目里用到了vuex，我想问一下，是所有项目里都会用vuex吗？`
+                    },
+                    {
+                        title: `vuex的好处是什么？`,
+                        content: [
+                            `在前端模块化项目中 不可避免的 某些变量需要在全局范围内引用，此时父子组件的传值，子父组件间的传值，兄弟组件间的传值成了我们需要解决的问题。`,
+                            `虽然vue提供了props和emit，兄弟间可以localstorage。但是这种方式在项目开发中带来的问题比他解决的问题更多（难管理，难维护，安全性低）。vuex的诞生也是为了解决这些问题，从而提高协作开发效率`
+                        ]
+                    },
+                    {
+                        title: `如果不用vuex，怎么实现数据传递？`,
+                        content: [
+                            `父子之间： 子组件emit发射到父组件，父组件props传递给子组件`,
+                            `兄弟组件: eventBus 和 localStorage`,
+                            `eventBus.$emit('add',this.arg)`,
+                            `eventBus.$on('add', (msg) => { console.log(msg) })`
+                        ]
+                    },
+                    {
+                        title: `vuex中mutations和actions有什么区别？`,
+                        content: [
+                            `mutations 必须是同步函数`,
+                            `actions可以是异步`
+                        ]
+                    },
+                    {
+                        title: `actions如何修改vuex的状态`,
+                        content: [
+                            `提交一个commit到mutations，然后通过mutations修改`,
+                        ]
+                    },
+                    {
+                        title: `如何在项目中使用vuex，调用方式有哪几种`,
+                        content: [
+                            `可以使用全局 this.$store点`,
+                            `也可以引入 mapState，mapMutations等`,
+                        ]
+                    },
+                    {
+                        title: `如何解决vue新刷新后数据丢失问题`,
+                        content: [
+                            `可以配合localStorage 和 sessionStorage`,
+                            `在页面刷新时再次请求服务器获得`,
+                        ]
+                    },
+                    {
+                        title: `简单跟我说下vue的生命周期以及周期的执行顺序和干了什么`,
+                        content: [
+                            `beforeCreate (组件实例刚被创建，开始初始化数据)`,
+                            `created (组件实例创建完成，属性已绑定(即数据已经有了),此时DOM还未生成)`,
+                            `beforeMount (模板编译、挂载之前)`,
+                            `mounted (编译、挂载完成，此时DOM元素已经被创建)`,
+                            `beforeUpdate (组件实例更新之前)`,
+                            `updated (组件实例更新完成)`,
+                            `beforeDestroy (组件被销毁之前)`,
+                            `destroyed (组件已被销毁)`
+                        ]
+                    },
+                    {
+                        title: `计算属性computed和监听watch的区别`,
+                        content: [
+                            `computed 可以对依赖的所有值监听，watch 一次只能监听一个值`,
+                            `computed支持缓存，watch不支持缓存`,
+                            `* computed不支持异步，watch支持异步，，setTimeout *`
+                        ]
+                    },
+                    {
+                        title: `计算属性和方法的区别`,
+                        content: [
+                            `计算属性 computed 的依赖值不变化时，会从缓存中获取，不会重新计算`,
+                            `方法: 不管依赖的数据变不变，methods都会重新计算`
+                        ]
+                    },
+                    {
+                        title: `子组件怎么取父组件的状态或方法`,
+                        content: [
+                            `this.$parent.dataName`,
+                            `this.$parent.funName`
+                        ]
+                    },
+                    {
+                        title: `路由守卫是干嘛的？ 你都会用来做什么`,
+                        content: [
+                            `可以在发生路由行为时拦截路由，进行一些需求判断，然后控制路由继续跳转或取消导航行为。`,
+                            `具体使用场景看公司`
+                        ]
+                    },
+                    {
+                        title: `怎么在父页面里调用子组件的方法？有几种方式可以实现`,
+                        content: [
+                            `通过给子组件设置ref属性，通过this.$refs 来获取子组件内的状态或方法`,
+                            `mixin混入`,
+                        ]
+                    },
+                    {
+                        title: `说下 $route 和 $router 的区别吧？`,
+                        content: [
+                            `$route 是路由信息对象，包含path,name,params,query,fullPath,matched等参数`,
+                            `$router 是路由实例，包含路由的跳转方法，钩子函数等`
+                        ]
+                    },
+                    {
+                        title: `既然$router可以做跳转、传参等，那么路由跳转之间传值有几种方式呢？`,
+                        content: [
+                            `使用 $router.params 传参`,
+                            `使用 $router.query 传参`,
+                            `使用 动态路由传参`
+                        ]
+                    },
+                    {
+                        title: `我现在有一个输入框，想要变输变入搜索，但是不想没输完或者每打一个字就去搜索，搜索太勤会造成多次请求接口，如何解决这个问题呢`,
+                        content: [
+                            `防抖 + 节流`,
+                            `这个问题可以用节流解决， 设置每隔n秒才执行一次`
+                        ]
+                    },
+                    {
+                        title: `如何实现防抖和节流`,
+                        content: [
+                            `手写函数`,
+                            `使用 debounce 库`
+                        ]
+                    },
+                    {
+                        title: `定义组件的时候 name有什么作用`,
+                        content: [
+                            `一：当使用keep-alive时，可以使用这个name进行过滤`,
+                            `include（包含的组件---缓存）`,
+                            `exclude (排除的组件--不缓存，优先级大于include) `,
+                            `使用keep-alive后，第二次进入页面时不会触发mounted()函数，此时想要进行数据请求可以使用activated()函数，也可以利用这个name属性增加一个过滤器`
+                        ]
+                    },
+                    {
+                        title: `slot 是什么？如何使用？`,
+                        content: [
+                            `slot: 插槽: 具名插槽、匿名插槽`,
+                            `在引用子组件的 开始标签和结束标签之间，插入一个任意一个元素，用slot标签包裹一下`,
+                            `或者设置属性slot="组件内对应的slot的name"，在父组件调用子组件的时候，这个插槽就会插入到子组件对应的具名插槽的位置。`,
+                            `slot 有一个 name 属性，加 name 属性就是具名插槽，不加就是匿名插槽。`
+                        ]
+                    },
+                    {
+                        title: `typeof 一个数组的返回结果是什么， 那typeof 一个对象又返回什么`,
+                        content: [
+                            `typeof array 会返回 object`,
+                            `typeof obj 也会返回 object`
+                        ]
+                    },
+                    {
+                        title: `那我如何精准的判断一个数据的类型呢`,
+                        content: [
+                            `Object.prototype.toString.call(arr)`,
+                            `'[object Array]';`
+                        ]
+                    },
+                    {
+                        title: `es6你都了解那些`,
+                        content: [
+                            `箭头函数··模板字符串··解构赋值··let-const声明··class类··扩展运算符（...）··Promise··Object.assign(额塞恩)·······`,
+                        ]
+                    },
+                    {
+                        title: `箭头函数 的this指向谁`,
+                        // https://blog.51cto.com/2014fontend/2327334
+                        content: [
+                            `1. 普通函数的this: 指向它的调用者，如果没有调用者则默认指向window`,
+                            `2. 箭头函数的this: 指向定义时所处的对象，而不是箭头函数使用时所在的对象，默认使用父级的this.`
+                        ],
+                        img: [
+                            'img/this指向1.png',
+                            'img/this指向2.png'
+                        ]
+                    },
+                    {
+                        title: `说说你对Promise的理解`,
+                        content: [
+                            `promise 是异步函数的解决方案，从语法上讲 promise 是一个对象，可以获取异步操作的消息
+
+                            promise 有三个状态，pending 等待状态、fulfilled 成功状态、rejected 失败状态，状态一旦更改，就不会在变
+
+                            创造出 promise 实例后，他会立刻执行，promise 有两个API  resolve 和 reject
+                            resolve 代表的是回调成功后的函数，reject 代表的是失败后返回的结果
+                            原型上有两个放法：.then 和 .catch 方法，例如请求接口 .then 拿到的是数据，通过 .catch 捕获错误异常   `
+                        ]
+                    },
+                    {
+                        title: `Promise是如何实现链式调用的`,
+                        content: [
+                            `实现链式调用的原理是 then方法中返回里新的promise实例`,
+                            `then方法传入的兴参onFulfilled 以及创建新的promise实例时，传入的resolve放在一起，被push到promise的callbacks队列中，这是衔接当前promise和后临promise的关键`
+                        ]
+                    },
+                    {
+                        title: `js修改都样式 和 !important 那个优先级更高`,
+                        content: [
+                            `!important的优先级更高，js最终回转化成行内样式`
+                        ]
+                    },
+                    {
+                        title: `左右各一个宽度200px的div，中间自动占满，要怎么布局`,
+                        content: [
+                            `1. flex布局`,
+                            `父flex-direction: row; 左右各设width: 200px; 中间flex: 1;`,
+                            `2. position定位`,
+                            `左右各定位上去，中间的定位left: 200px; right: 200px;`,
+                        ]
+                    },
+                    {
+                        title: `一个没有样式的div，内部有一个margin-top：20px；的div标签，此时会出现一个什么样的效果？`,
+                        content: [
+                            `会出现margin重叠问题`
+                        ]
+                    },
+                    {
+                        title: `怎么解决margin重叠`,
+                        content: [
+                            `外层元素padding代替`,
+                            `外层元素 overflow:hidden;`,
+                            `内层元素绝对定位 postion:absolute:`,
+                            `内层元素 加float:left;或display:inline-block;`,
+                            `内层元素透明边框 border:1px solid transparent;`,
+                            `内层元素padding:1px;`,
+                            `BFC`                         
+                        ]
+                    },
+                    {
+                        title: `怎么形成BFC?`,
+                        content: [
+                            `1. 根元素body`,
+                            `2. float属性不为none`,
+                            `3. position不为static和relative`,
+                            `4. overflow不为visible`,
+                            `5. display为inline-block, table-cell, table-caption, flex, inline-flex`,
+                        ]
+                    },
+                    {
+                        title: `BFC的作用`,
+                        content: [
+                            `1. 防止margin重叠。`,
+                            `2. 清除浮动的影响`,
+                            `3. 防止文字环绕`,
+                        ]
+                    },
+                    {
+                        title: `怎么实现水平垂直居中`,
+                        content: [
+                            `1. 绝对定位 + transform反向偏移`,
+                            `position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);`,
+                            `2. flex布局`,
+                            `display: flex; justify-content: center; align-items: center;`,
+                            `3. 绝对定位 + margin反向偏移`,
+                            `position: absolute; left: 50%; top: 50%; margin-top: -xxpx; margin-left: -xxpx;`,
+                        ]
+                    },
+                    {
+                        title: `针对回流的浪费性能，有什么好的解决方案吗？`,
+                        content: [
+                            `1. 用transform 代替 top，left ，margin-top， margin-left... 这些位移属`,
+                            `2. 用opacity 代替 visibility，但是要同时有translate3d 或 translateZ 这些可以创建的图层的属性存在才可以阻止回流`,
+                            `3. 不要使用 js 代码对dom 元素设置多条样式，选择用一个 className 代替`,
+                            `4. display: flex; justify-content: center; align-items: center;`,
+                            `5. 绝对定位 + margin反向偏移`,
+                            `6. position: absolute; left: 50%; top: 50%; margin-top: -xxpx; margin-left: -xxpx;`,
+                        ]
+                    },
+                    {
+                        title: `我现在一个vue项目，首屏家在事件过长，如何优化呢？`,
+                        content: [
+                            `1. 路由懒加载`,
+                            `2. ui框架按需加载，不注册到全局`,
+                            `3. gzip压缩， 安装compression-webpack-plugin-D；；；；在vue.config.js中引入并修改webpack配置`,
+                        ]
+                    },
+
+                    
+                ],
+                array: [
+                    {
+                        title: `曾经遇到过那些印象深刻都问题？如何解决的？`,
+                    },
+                    {
+                        title: `说下自己的优缺点吧？`,
+                    },
+                    {
+                        title: `平时怎么学习前端的？`,
+                    },
+                    {
+                        title: `你目前是离职状态吗？`
+                    },
+                    {
+                        title: `那随时都可以到岗吧？`
+                    },
+                    {
+                        title: `你有什么问题想问公司的么？`
+                    }
+                ]
+            },
+        })
+
+        
+    </script>
+</body>
+</html>

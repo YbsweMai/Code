@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // var obj = new Object(); // var obj ={}; 同样效果 优化代码
+    // var obj = {
+    //     name : 'KK',
+    //     height : 158,
+    //     age : 18,
+    //     students: {
+    //         name : 'AA',
+    //         age : 22,
+    //     }
+    // }
+    //     // var name = obj.students.name // 给name定义为AA 
+    // console.log(obj.name) 
+
+    // var a ={c:2};
+    // var b = a;
+    // a.c = 5;
+    // console.log('a',a);
+    // console.log('b',b);
+    // console.log('a === b ===>', a === b) // true 它们是同一个对象所以相等
+
+    // var d ={c: 5};
+    // console.log('a === c ===>', a === d) // false d是新建的一个对象，所以不相等
+
+    // var func = new Function("console.log('hello~');");
+
+    // func();
+
+    // func.a = 1;
+
+    // console.log(func.a)
+
+//     var a = 123;
+// function main(){
+//     // var a;
+//     console.log(a);
+
+//     a = 1234;
+// }
+
+// main()
+// console.log(a);
+
+var foo = 'foo'
+var myObject = {
+    foo : "bar",
+    func: function(){
+        var self = this;
+        console.log("outer func: this.foo = " + this.foo);
+        console.log("outer func: this.foo = " + self.foo);
+        (function(){
+            console.log("inner func: this.foo =" + this.foo);
+            console.log("inner func: this.foo =" + self.foo);
+
+        }());
+    }
+};
+
+var func1 = myObject.func;
+myObject.func();
+func1();
+
+</script>
+</html>

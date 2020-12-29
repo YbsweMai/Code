@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 类似于Vue V-model</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://unpkg.com/uuid@latest/dist/umd/uuidv4.min.js"></script>
+
+ 
+  </head>
+  <body>
+    <div id="example">
+
+    </div>
+    <script type="text/babel">  // jsx语法需要转义
+
+    class Father extends React.Component{
+        constructor(){
+            super(),
+            this.state = {
+                name:'Child',
+                age:18
+            }
+        }
+
+        click = ()=>{
+            this.setState({
+                name:'Father'
+            })
+        }
+
+        changeAge = (age)=>{
+            this.setState({
+                age: age
+            })
+        }
+
+        render(){
+            return(
+                <div >
+                    <div>
+                        <button onClick={ this.click }>通过父组件button改变state来重新渲染子组件内容</button>
+                    </div>
+
+                    <Child name={ this.state.name } changeAge={ this.changeAge }/>
+                    <div>
+                        { this.state.age }    
+                    </div>                  
+                </div>
+            )
+        }
+    }
+
+    class Child extends React.Component {
+        constructor(){
+            super()
+            
+        }
+
+        render(){
+            return(
+                <div>
+                    父组件state.name:{ this.props.name }
+
+                    <div>
+                        <button onClick={()=>{ this.props.changeAge(28) }}>子组件修改父组件state</button>    
+                    </div>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(
+        <Father/>,
+        document.getElementById('example')
+    );
+    </script>
+  </body>
+</html>

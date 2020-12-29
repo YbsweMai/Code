@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 实例</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+    <style>
+
+        .test{
+            background-color: aquamarine;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="example">
+
+    </div>
+    
+    <script type="text/babel">
+
+
+    class App extends React.Component{
+
+        constructor(){
+            super();
+
+            this.state = {
+
+              clock:{
+                num:'1',
+                step:'1',
+                time:'1000',
+                flag:false,
+              }
+            }
+        }
+
+
+        render(){
+
+            return  (
+                        <div >
+                            控制器：
+                            <div>
+
+                                <select value={this.state.clock.num} onChange={
+
+                                  (e)=>{
+
+                                    this.setState({
+                                      clock:{
+                                        ...this.state.clock,
+                                        num:e.target.value
+                                      }
+                                    })
+                                  }
+                                }>
+                                    <option value="1">定时器1</option>  
+                                    <option value="2">定时器2</option>  
+                                </select>
+
+                                <div>
+                                  step:
+                                  <input type="text" value={ this.state.clock.step || '' } onChange={ (e)=>{
+
+                                    this.setState({
+
+                                      clock:{
+                                        ...this.state.clock,
+                                        step:e.target.value
+                                      }
+                                    })
+                                  } }/>
+                                </div>
+                                
+                                <div>
+                                  time:
+                                  <input type="text" value={ this.state.clock.time || '' } onChange={ (e)=>{
+
+                                    this.setState({
+
+                                      clock:{
+                                        ...this.state.clock,
+                                        time:e.target.value
+                                      }
+                                    })
+                                  } }/>
+                                </div>
+                                
+                                <div>
+                                  <button onClick={ ()=>{
+
+                                    this.setState({
+
+                                      clock:{
+
+                                        ...this.state.clock,
+                                        flag:!this.state.clock.flag
+                                      }
+                                    })
+                                  }}>修改</button>  
+                                </div>
+                            </div>
+                            <Clock1 clock={this.state.clock}/>
+                            <Clock2 clock={this.state.clock}/>
+                        </div>
+                    )
+            
+        }
+    }
+
+    /* 时钟1 */
+    class Clock1 extends React.Component{
+
+      constructor(){
+          super();
+
+          this.state = {
+
+            count: 0,
+            isStart: false,
+            time:1000,
+            step:1
+          }
+      }
+
+      componentWillReceiveProps(nextProps){
+
+        /* 
+         * 如果传入的flag变化，同时num为1，代表是clock1，改变当前组件状态
+        */
+        if(this.props.clock.flag !== nextProps.clock.flag && nextProps.clock.num === '1'){
+
+            this.setState({
+                step: Number(nextProps.clock.step),
+                time: Number(nextProps.clock.time),
+            },()=>{
+            
+              /* 如果正在计时器，则清空计时器再记时，如果不在计时，则不操作，只改变当前组件的状态 */
+              if(this.state.isStart){
+                this.start()
+              }
+              
+            })
+        }
+      }
+
+      /* 启动 */
+      start = ()=>{
+
+        /* 先清除计时器 */
+        this.clearTimer();
+
+        /* 
+         * 开始 
+         * step 和 time 由页面的状态来控制
+        */
+        this.timer = setInterval(()=>{
+
+          this.setState({
+
+            count : this.state.count + this.state.step
+          })
+        },this.state.time)
+      }
+
+      /* 停止 */
+      stop = ()=>{
+
+        this.clearTimer();
+      }
+
+      /* 清除定时器 */
+      clearTimer = ()=>{
+
+        if(this.timer){
+
+          clearInterval(this.timer);
+        }
+      }
+
+      /* 销毁时，清除定时器 */
+      componentWillUnmount(){
+        this.clearTimer()
+      }
+    
+
+      render(){
+
+          return  (
+                      <div >
+                          
+                        定时器1: {this.state.count}
+                        <div>
+                           <button onClick={ ()=>{ this.setState({
+
+                              isStart:!this.state.isStart
+                           },()=>{
+
+                              if(this.state.isStart){
+
+                                  this.start();
+                              }else{
+
+                                  this.stop();
+                              }
+                           })}}>
+                            { this.state.isStart ? 'stop' : 'start'}
+                           </button>  
+                        </div>
+                      </div>
+                  )
+          
+      }
+    }
+
+    /* 时钟2 */
+    class Clock2 extends React.Component{
+
+      constructor(){
+          super();
+
+          this.state = {
+
+            count: 0,
+            isStart: false,
+            time:1000,
+            step:1
+          }
+      }
+
+      componentWillReceiveProps(nextProps){
+
+        if(this.props.clock.flag !== nextProps.clock.flag && nextProps.clock.num === '2'){
+
+            this.setState({
+                step: Number(nextProps.clock.step),
+                time: Number(nextProps.clock.time),
+            },()=>{
+
+              if(this.state.isStart){
+                this.start()
+              }
+            })
+        }
+      }
+
+
+      start = ()=>{
+
+        this.clearTimer();
+
+        this.timer = setInterval(()=>{
+
+          this.setState({
+
+            count : this.state.count + this.state.step
+          })
+        },this.state.time)
+      }
+
+      stop = ()=>{
+
+        this.clearTimer();
+      }
+
+      clearTimer = ()=>{
+
+        if(this.timer){
+
+          clearInterval(this.timer);
+        }
+      }
+
+
+      componentWillUnmount(){
+        this.clearTimer()
+      }
+
+      render(){
+
+          return  (
+                      <div >
+                          
+                        定时器2: {this.state.count}
+                        <div>
+                           <button onClick={ ()=>{ this.setState({
+
+                              isStart:!this.state.isStart
+                           },()=>{
+
+                              if(this.state.isStart){
+
+                                  this.start();
+                              }else{
+
+                                  this.stop();
+                              }
+                           })}}>
+                            { this.state.isStart ? 'stop' : 'start'}
+                           </button>  
+                        </div>
+                      </div>
+                  )
+          
+      }
+    }
+
+
+    ReactDOM.render(
+        <App name={ 'isen' }/>,
+        document.getElementById('example')
+    );
+
+    </script>
+  </body>
+</html>

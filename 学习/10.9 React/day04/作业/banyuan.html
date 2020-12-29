@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>BanYuan</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="./moment.js"></script>
+    
+    <style>
+        /* header */
+        a {
+            text-decoration: none;
+            color: black;
+        }    
+        
+        .header-container{
+            margin: 0 auto;
+            width: 1200px;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+        
+        .header-left img{
+            width: 200px;
+        }
+        
+        .header-right{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        
+        .header-nav{
+            padding-right: 50px;
+        }
+
+        /* center */
+        .center-container{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 0 250px;
+        }
+
+        /* Item */
+        .box-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 400px;
+            padding: 80px 0;
+        }
+
+        .box-top{
+            width: 400px;
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+
+        }
+
+        .box-title{
+            width: 388px;
+            height: 68px;
+            padding-left: 10px;
+            font-family: PingFangSC-Medium;
+            font-size: 18px;
+            color: #000;
+            letter-spacing: 1.08px;
+            line-height: 68px;
+        }
+
+        .box-top img{
+            width: 400px;
+            height: 255px;
+        }
+
+        /* footer */
+        .footer-container{
+            margin: 0 auto;
+            background: #303232;
+            padding: 64px 120px 85px 120px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .footer1{
+            margin-top: 7px;
+            width: 154px;
+        }
+
+        .footer1 img{
+            width: 150px;
+        }
+
+        .footer1-title{
+            font-size: 22px;
+            line-height: 30px;
+            color: #e3e3e3;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .footer1-words{
+            font-size: 14px;
+            line-height: 24px;
+            color: #e3e3e3;
+            font-weight: 400;
+            margin: 34px 0;
+        }
+
+    </style>
+  </head>
+  <body>
+    <div id="example">
+
+    </div>
+    <script type="text/babel">  // jsx语法需要转义
+
+
+    /* 类似于Vue里的页面组件 */
+    class App extends React.Component {
+        constructor(){
+            super()
+        }
+
+        render(){
+            // return eles
+            return(
+                <div >  
+                    <Header/>
+                    <Center/>
+                    <Footer/>
+                </div>
+            )
+        }
+    }
+
+    class Header extends React.Component {
+        constructor(){
+            super()
+        }
+
+        render(){
+            return(
+                <div className="header-container">
+                    <div className="header-left">
+                        <a href="https://www.banyuan.club/index"><img src="https://by-image.oss-cn-shanghai.aliyuncs.com/yfront/static/commonbg/logo.png" alt=""/></a>
+                    </div>
+
+                    <div className="header-right">
+                        <div className="header-nav">
+                            <a href="">首页</a>
+                        </div>
+                        <div className="header-nav">
+                            <a href="">职前集训</a>
+                        </div>
+                        <div className="header-nav">
+                            <a href="">高校俱乐部</a>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    class Center extends React.Component {
+        constructor(){
+            super()
+            
+        }
+
+        renderItem(){
+            const list = [
+                    { id:1, cover: 'http://by-camp.oss-cn-shanghai.aliyuncs.com/wiki/Javase-online/images/PRE_MACBOOK.png', title:'操作系统使用技巧', decp:'学习编程过程中，我们将花费大量时间使用计算机，使用其中的工具完成我们的工作。这些工具的运行都是依靠操作系统，这里我们来介绍一下如何高效的使用操作系统以及工具。' },
+                    { id:2, cover: 'http://by-camp.oss-cn-shanghai.aliyuncs.com/wiki/Javase-online/images/PRE_markdown.png', title:'操作系统使用技巧', decp:'学习编程过程中，我们将花费大量时间使用计算机，使用其中的工具完成我们的工作。这些工具的运行都是依靠操作系统，这里我们来介绍一下如何高效的使用操作系统以及工具。' },
+                    { id:3, cover: 'http://by-camp.oss-cn-shanghai.aliyuncs.com/wiki/Javase-online/images/PRE_terminal.jpg', title:'操作系统使用技巧', decp:'学习编程过程中，我们将花费大量时间使用计算机，使用其中的工具完成我们的工作。这些工具的运行都是依靠操作系统，这里我们来介绍一下如何高效的使用操作系统以及工具。' },
+                    { id:4, cover: 'http://by-camp.oss-cn-shanghai.aliyuncs.com/online/frontcover/PRE_code.png', title:'操作系统使用技巧', decp:'学习编程过程中，我们将花费大量时间使用计算机，使用其中的工具完成我们的工作。这些工具的运行都是依靠操作系统，这里我们来介绍一下如何高效的使用操作系统以及工具。' },
+            ]
+
+            const eles = list.map((item)=>{
+                return (
+                    <Item item={ item } key= { item.id }></Item>
+                )
+            })
+            return eles
+        }
+
+        render(){
+            return(
+                <div className='center-container'>
+                    { this.renderItem()}
+                </div>
+            )
+        }
+    }
+
+    /* 循环组件 */
+    class Item extends React.Component {
+        constructor(){
+            super()
+            this.state = {
+                date: new Date()
+            }
+        }
+
+        render(){
+            return(
+                <div className="box-container">
+                    <div className="box-top">
+                        <img src={ this.props.item.cover }/>
+                        <div className="box-title">{ this.props.item.title }</div>
+                    </div>       
+                    
+                    <div>创建时间:{ moment(this.state.date).format('YYYY-M-D') }</div>
+                    <p>{ this.props.item.decp }</p>
+                </div>
+            )
+        }
+    }
+
+    class Footer extends React.Component {
+        constructor(){
+            super()
+        }
+
+        render(){
+            return(
+                <div className="footer-container">
+
+                    <div className="footer1">
+                        <a href="https://www.banyuan.club/index"><img src="https://by-image.oss-cn-shanghai.aliyuncs.com/yfront/static/commonbg/logo-footer.png" /></a>
+                        <h3 className="footer1-words">半圆的发展历程和背景，
+                            更清晰的了解我们</h3>
+                    </div>
+
+                    <div className="footer1">
+                        <h2 className="footer1-title">我们的故事</h2>
+                        <h3 className="footer1-words">半圆的发展历程和背景，
+                            更清晰的了解我们</h3>
+                    </div>
+
+                    <div className="footer1">
+                        <h2 className="footer1-title">成为一员</h2>
+                        <h3 className="footer1-words">半圆学社致力于数字领域的 不断开拓，欢迎志同道合的朋友加入我们。</h3>
+                    </div>
+
+                    <div className="footer1">
+                        <h2 className="footer1-title">成为一员</h2>
+                        <h3 className="footer1-words">半圆学社致力于数字领域的 不断开拓，欢迎志同道合的朋友加入我们。</h3>
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <App/>,
+        document.getElementById('example')
+    );
+    </script>
+  </body>
+</html>

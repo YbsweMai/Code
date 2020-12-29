@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React.state</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example">
+
+    </div>
+    <script type="text/babel">  // jsx语法需要转义
+
+
+    /* 类似于Vue里的页面组件 */
+    class App extends React.Component {
+        constructor(){
+            super()
+
+            this.state = {
+                name:'KK',
+                age: 18,
+                flag:true
+            }
+        }
+
+        /* 两种方式控制隐藏  一 */
+        click=()=>{
+            console.log(this.state)
+            this.setState({
+                name:'DK',
+                /* 控制隐藏 */
+                flag : !this.state.flag
+            },()=>{
+                console.log(this.state)
+            })
+        }
+
+        /* 两种方式控制隐藏  二 */
+        renderTest=()=>{
+            if(this.state.flag){
+                return(
+                    <div>函数隐藏</div>
+                )
+            }else{
+                return null
+            }
+        }
+
+       
+        render(){
+            /* 控制隐藏 */
+            const ele = this.state.flag ? 
+            <div> test </div> : <div></div>
+
+            return(
+                <div>  
+                    { this.state.name }
+                                      
+                    { ele }
+
+                    { this.state.flag ? <div>test</div> : null}
+
+                    { this.renderTest()}
+
+                    <div>
+                        <button onClick={this.click}>click</button>
+                    </div>
+                </div>
+
+                
+            )
+        }
+    }
+
+
+    ReactDOM.render(
+        <App/>,
+        document.getElementById('example')
+    );
+    </script>
+  </body>
+</html>

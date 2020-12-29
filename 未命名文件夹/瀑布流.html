@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        .item{
+            width: 220px;
+            font-size: 30px;
+            font-weight: 700;
+            color: white;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            position: absolute;
+        }
+
+        .item-1{
+            height: 200px;
+            background-color: rgb(150, 100 , 130);
+        }
+
+        .item-2{
+            height: 280px;
+            background-color: rgb(150, 100 , 0);
+        }
+
+        .item-3{
+            height: 140px;
+            background-color: rgb(250, 100 , 200);
+        }
+
+        .item-4{
+            height: 190px;
+            background-color: rgb(150, 0 , 130);
+        }
+
+        .item-5{
+            height: 230px;
+            background-color: rgb(150, 250 , 130);
+        }
+
+        .item-6{
+            height: 250px;
+            background-color: rgb(0, 100 , 130);
+        }
+
+        .item-7{
+            height: 200px;
+            background-color: rgb(250, 200 , 130);
+        }
+
+        .item-8{
+            height: 160px;
+            background-color: rgb(150, 0 , 0);
+        }
+
+        .item-9{
+            height: 130px;
+            background-color: rgb(0, 0 , 130);
+        }
+
+        .item-10{
+            height: 180px;
+            background-color: rgb(0, 150 , 130);
+        }
+
+        .item-11{
+            height: 220px;
+            background-color: rgb(0, 100 , 130);
+        }
+
+        .item-12{
+            height: 130px;
+            background-color: rgb(150, 100 , 0);
+        }
+        .item-13{
+            height: 220px;
+            background-color: rgb(150, 0 , 130);
+        }
+        .item-14{
+            height: 180px;
+            background-color: rgb(0, 100 , 0);
+        }
+        .item-15{
+            height: 150px;
+            background-color: rgb(150, 100 , 130);
+        }
+
+    </style>
+    
+</head>
+<body>
+    <div class="item item-1">1</div>
+    <div class="item item-2">2</div>
+    <div class="item item-3">3</div>
+    <div class="item item-4">4</div>
+    <div class="item item-5">5</div>
+    <div class="item item-6">6</div>
+    <div class="item item-7">7</div>
+    <div class="item item-8">8</div>
+    <div class="item item-9">9</div>
+    <div class="item item-10">10</div>
+    <div class="item item-11">11</div>
+    <div class="item item-12">12</div>
+    <div class="item item-13">13</div>
+    <div class="item item-14">14</div>
+    <div class="item item-15">15</div>
+</body>
+<script>
+    let items = document.getElementsByClassName('item')
+
+    let gap = 20;   
+
+    waterfall()
+
+    function waterfall(){
+        // 确定列数 = 页面宽度 / 图片宽度
+
+        let pageWidth = window.innerWidth; // 页面宽度
+        let itemWidth = items[0].offsetWidth // 图片宽度
+        let columns = parseInt(pageWidth / (itemWidth + gap)) // 列数
+        let arr =[];
+        
+        for(let i = 0;i<items.length;i++){
+            if(i < columns){
+
+                items[i].style.top=0;
+                // 整体图片宽度 = 图片宽度+gap * i
+                items[i].style.left=(itemWidth + gap)* i + 'px'
+                // 添加进数组
+                arr.push(items[i].offsetHeight)
+            }else{
+                let minHeight = arr[0];
+                let index = 0;
+
+                // 找出最小高度
+                for(let j = 0;j<arr.length;j++){
+                    if(minHeight>arr[j]){
+                        minHeight = arr[j];
+                        index = j
+                    }
+                }
+
+                // 设置下一行第一个盒子位置 top是最小列高度+gap
+                items[i].style.top = arr[index] + gap +'px';
+                items[i].style.left = items[index].offsetLeft + 'px'
+
+                // 动态修改最小列高度
+                // 最小列高度 = 当前高度 + 拼接高度 + gap
+                arr[index] = arr[index] + items[i].offsetHeight + gap
+            }
+        }
+
+    }
+
+    // 屏幕大小改变时 自动刷新页面列数
+    window.onresize = function(){
+
+        waterfall()
+    }
+</script>
+
+</html>

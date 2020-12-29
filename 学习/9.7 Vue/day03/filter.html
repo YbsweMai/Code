@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{time | getTime}}
+        {{ msg | abc}}
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    
+    /* 局部过滤器 */
+    // let vm = new Vue({
+    //     el:'#app',
+    //     data(){
+    //         return{
+    //             time : new Date().getTime(),
+    //             msg:'hahaha'
+    //         }
+    //     },
+    //     filters:{
+    //         getTime(time){
+
+    //             let value = new Date(time)
+    //             let m = value.getMonth()+1
+
+    //             return value.getFullYear()+'年' + m +'月' + value.getDate() + '日' + value.getHours() + '时'
+
+    //         },
+
+    //         abc(msg){
+    //             return '123' + msg
+    //         }
+    //     },
+    // })
+
+
+        /* 全局过滤器 */
+    Vue.filter('globalFormatTime',(time)=>{
+
+        let value = new Date(time)
+
+        return value.getFullYear()+'年' + value.getMonth()+1 +'月' + value.getDate() + '日' + value.getHours() + '时'
+        })
+
+    let App = {
+        template:`
+            <div>
+                {{time | getTime}}
+            </div>
+        `,
+        data(){
+            return{
+                time : new Date().getTime(),
+                msg:'hahaha'
+            }
+        },
+        filters:{
+            getTime(time){
+
+                let value = new Date(time)
+                let m = value.getMonth()+1
+
+                return value.getFullYear()+'年' + m +'月' + value.getDate() + '日' + value.getHours() + '时'
+
+            },
+
+            abc(msg){
+                return '123' + msg
+            }
+        },
+    }
+    
+    let vm = new Vue({
+        render: h => h(App)
+    }).$mount('#app')
+</script>
+</html>

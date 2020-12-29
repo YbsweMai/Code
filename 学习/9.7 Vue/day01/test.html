@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 200px;
+            border-radius: 45%;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model="sex">        
+
+        <div v-if="sex === '男'">
+            <img src="https://by-image.oss-cn-shanghai.aliyuncs.com/vue/avatar/man1.jpg" alt="">
+            <h1 style="color: blue;">{{manEnter}}</h1>
+
+        </div>
+
+        <div v-else-if="sex === '女'">
+            <img src="https://by-image.oss-cn-shanghai.aliyuncs.com/vue/avatar/woman1.jpg" alt="">
+            <h1 style="color: pink;">{{womanEnter}}</h1>
+
+        </div>
+
+        <h1 v-else>请输入性别</h1> -->
+
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    let app = new Vue({
+        el:'#app',
+        template:`
+        <div>
+            <input type="text" v-model="sex">        
+
+            <div v-if="sex === '男'">
+                <img src="https://by-image.oss-cn-shanghai.aliyuncs.com/vue/avatar/man1.jpg" alt="">
+                <!-- <h1 style="color: blue;">男生入口</h1> -->
+                <h1 style="color: blue;">{{manEnter}}</h1>
+
+            </div>
+
+            <div v-else-if="sex === '女'">
+            <img src="https://by-image.oss-cn-shanghai.aliyuncs.com/vue/avatar/woman1.jpg" alt="">
+            <!-- <h1 style="color: pink;">女生入口</h1> -->
+            <h1 style="color: pink;">{{womanEnter}}</h1>
+
+            </div>
+
+            <h1 v-else>请输入性别</h1>
+        </div>`,
+        data(){
+            return {
+                sex: '',
+                manEnter:'男生入口',
+                womanEnter:'女生入口'
+            }    
+        }   
+    })
+
+</script>
+</html>

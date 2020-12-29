@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 类方式声明组件</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example">
+
+    </div>
+    <script type="text/babel">  // jsx语法需要转义
+
+
+    /* 类似于Vue里的页面组件 */
+    class ArrayElements extends React.Component {
+        constructor(){
+            super()
+        }
+
+        /* bind改变this指向(全局) */
+        click(){
+            this.test()
+        }
+
+        /* react全部使用箭头函数，所以this指向全局就能找到test ,而Vue禁止使用箭头函数*/
+        btn=() => {
+            this.test()
+        }
+
+        test(){
+            console.log('test')
+        }
+
+        /* react循环 类似于Vue V-for */
+        renderChildren(){
+            const array = [1,2,3,4,5]
+
+            const eles = array.map((item)=>{
+                return (
+                    // <div key= {Math.random()}>{item}</div>,
+                    <Child num={ item } key= {Math.random()}></Child>
+                )
+            })
+            return eles
+        }
+        
+        render(){
+            const eles = [
+                <h1>1</h1>,
+                <h1>2</h1>,
+                // <span>{this.props.name}</span>
+
+            ]
+
+            // return eles
+            return(
+                /* react的类名需要写成className */
+                <div className={'test'}>  
+                    <div>{this.props.name}</div>
+
+                    { eles }
+
+                    <Child name='KK'/>  
+                    
+                    <button onClick={ this.click.bind(this) }>bind改变this指向(全局)</button>  <br />
+
+                    <button onClick={ this.btn}>箭头函数this指向全局找到test</button> 
+
+                    { this.renderChildren() }
+                </div>
+            )
+        }
+    }
+
+    /* 嵌套组件 */
+    class Child extends React.Component {
+        constructor(){
+            super()
+        }
+
+        render(){
+            return(
+                <div>
+                     { this.props.name }
+                     { this.props.num }
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <ArrayElements name={ 'DK' }/>,
+        document.getElementById('example')
+    );
+    </script>
+  </body>
+</html>

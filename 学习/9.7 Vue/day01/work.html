@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .marjor1{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: relative;
+            padding-left: 80px;
+
+        }
+
+        .marjor1 h2{
+            min-width: 80px;
+            line-height: 60px;
+            text-align: center;
+        }
+
+        .marjor1 img{
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            left: 0px;
+        }
+
+        .title{
+            background-color: #f3f3f3;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+            <!-- <div v-for="(item,index) in list">
+                <h2>{{item}}</h2> -->
+                
+            </div>
+        
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    
+    let VueApp = {
+
+        template:`
+                <div>
+                    <div :class="'marjor1 title'">
+                        <div v-for="(getMarjor) in marjor">
+                            <h2>{{getMarjor}}</h2>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div v-for="(i,index) in list" :class="'marjor1'" :style="{backgroundColor: index % 2==1 ? '#f3f3f3' : ''}" v-on:click ="studentAlert(i)">
+                            <img v-if="index === 0" src="./作业/第一名.jpg" alt="">
+                            <img v-if="index === 1" src="./作业/第二名.jpeg" alt="">
+                            <img v-if="index === 2" src="./作业/第三名.jpeg" alt="">
+                            <h2>{{i.name}}</h2>
+                                <template v-for="(s) in i.score">
+                                    <h2>{{s.math}}</h2>
+                                    <h2>{{s.chinese}}</h2>
+                                    <h2>{{s.english}}</h2>
+                                    <h2>{{s.geography}}</h2>
+                                    <h2>{{s.history}}</h2>
+                                    <h2>{{i.allCount}}</h2>              
+                                </template> 
+                        </div>                    
+                    </div>           
+                </div>
+        `,
+        data(){
+            return {
+                marjor: ['姓名', '数学', '语文', '英语', '地理', '历史', '总分'],
+                list: [{
+                        name: '肖锋',
+                        score: [{
+                            math: 99,
+                            chinese: 100,
+                            english: 100,
+                            geography: 99,
+                            history: 98
+                        }],
+                        allCount: 496
+                    }, {
+
+                        name: '安澜',
+                        score: [{
+                            math: 90,
+                            chinese: 98,
+                            english: 89,
+                            geography: 96,
+                            history: 100
+                        }],
+                        allCount: 473
+                    }, {
+                        name: '路小北',
+                        score: [{
+                            math: 88,
+                            chinese: 87,
+                            english: 77,
+                            geography: 86,
+                            history: 78
+                        }],
+                        allCount: 416
+                    }, {
+                        name: '许巍',
+                        score: [{
+                            math: 39,
+                            chinese: 40,
+                            english: 76,
+                            geography: 90,
+                            history: 59
+                        }],
+                        allCount: 304
+                    }
+                ],
+            }
+        },
+        methods:{
+                    studentAlert(i){
+                        alert(JSON.stringify(i))
+                    },
+                }
+    }
+
+    let vm = new Vue({
+        render:h=>h(VueApp)
+    }).$mount('#app')
+
+</script>
+</html>

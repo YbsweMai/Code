@@ -1,0 +1,60 @@
+<style>
+    /* 相比圣杯布局 只需要左中右 但是需要在center里小黑子加上margin边距  left和right不需要加定位和移动*/
+    *{
+        padding: 0;
+        margin: 0;
+    }
+
+    .header{
+        height: 80px;
+        width: 100%;
+        background-color: red;
+    }
+    .center{
+        height: 500px;
+        width: 100%;
+        background-color: yellow;
+        float: left;
+    }
+
+    .inbox{
+        height: 500px;
+        margin: 0 220px 0 170px; /*关键!!!左右边界等于左右盒子的宽度,多出来的为盒子间隔*/
+        border: 1px solid black;
+    }
+
+    .left{
+        height: 500px;
+        width: 170px;
+        background-color: green;
+        float: left;
+        margin-left: -100%; /*调整#left的位置,值等于自身宽度 */
+    }
+    
+    .right{
+        height: 500px;
+        width: 220px;
+        background-color:pink;
+        float: left;
+        margin-left: -220px; /*使right到指定的位置,值等于自身宽度*/
+    }
+
+    .footer {
+    clear: both;  /*注意清除浮动!!*/
+    height: 60px;
+    background-color: #ccc;
+    }
+</style>
+</head>
+<body>
+<header class="header"></header>
+    <div class="center">
+        <div class="inbox"></div>
+    </div>
+    <div class="right"></div>
+    <div class="left"></div>
+
+<div class="footer"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        .header-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 80px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    let appHeader = {
+        template:`
+        <div class="header-container">
+            <div>返回</div>    
+            <div>
+                <slot name="slotCenter"></slot>
+            </div>    
+            <div>
+                <slot name="slotRight"></slot>    
+            </div>    
+        </div>
+        `,
+    }
+
+    let news ={
+
+        template:`
+            <div>
+                <app-header>
+                    <div slot="slotCenter">标题</div>   
+                    <div slot="slotRight">分享</div>   
+                </app-header>
+            </div>
+        `,
+        components:{
+            'app-header':appHeader
+        }
+        
+    }
+
+    let kefu = {
+        template:`
+            <div>
+                <app-header>
+                    <div slot="slotCenter">客服中心</div>  
+                    <div slot="slotRight">{{msg}}</div>    
+                </app-header>
+            </div>
+        `,
+        data(){
+            return {
+                msg:'投诉'
+            }
+        },
+        components:{
+            'app-header':appHeader
+        }
+    }
+
+    let father = {
+        template:`
+            <div class="father">
+                <news></news>
+                <br>
+                <kefu></kefu>
+            </div>
+        `,
+
+        components:{
+            news,kefu
+        }
+    }
+
+    new Vue({
+        render: h => h(father)
+    }).$mount('#app')
+</script>
+</html>

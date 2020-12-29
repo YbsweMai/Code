@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1{
+            width: 500px;
+            height: 500px;
+            background-color: aqua;
+        }
+
+        .div2{
+            width: 150px;
+            height: 150px;
+            background-color: blueviolet;
+        }
+
+        .div3{
+            height: 150px;
+            width: 150px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="doThis">btn1</button>
+
+        <!-- 内联语句 -->
+        <button @click="doThis2('Hello!world')">btn2</button>
+
+            <!-- 停止冒泡 -->
+        <div class="div1" @click="clickDiv1">
+            <div class="div2" @click.stop="clickDiv2"></div>
+            <div class="div3" @click.stop="clickDiv3"></div>
+        </div>
+
+        <!-- 阻止默认行为 -->
+        <button @click.prevent="doThis">7</button>
+        <a href="https://www.baidu.com" @click.prevent>a</a>
+
+        <!-- 回车键 -->
+        <input @keyup.enter="onEnter">
+        <input @keyup.13="onEnter">
+
+        <!-- 点击只会触发一次 -->
+        <button v-on:click.once="doThis">8</button>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+
+        el:'#app',
+        data (){
+            return{}
+        },
+
+        methods:{
+
+            doThis(){
+                console.log('doThis')
+            },
+            doThis2(str){
+
+                console.log(str)
+            },
+            clickDiv1(){
+                console.log('我是div1')
+            },
+            clickDiv2(){
+                console.log('我是div2')
+            },
+            clickDiv3(){
+                console.log('我是div3')
+            },
+            onEnter(){
+                console.log("woshiEnter")
+            },
+
+        }
+    })
+</script>
+</html>

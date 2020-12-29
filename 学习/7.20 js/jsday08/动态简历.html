@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="padding: 25px;">
+
+    <div class="leftContent">
+        <pre class='content'></pre>
+    </div>
+
+    <div class="rightContent">
+        <pre class='resume'></pre>
+    </div>
+</body>
+<script>
+    var contentEle = document.getElementsByClassName('content')[0];
+    var string = "We Are Ban Yuan";
+    var count = 0;
+    var timer;
+
+    // 添加内容
+    function addContent(){
+        if(count > string.length){
+            stop();
+            // count = 0;
+        }
+        console.log(count);
+        count++;
+        contentEle.innerHTML = string.substring(0,count);
+    }
+
+    //计时器开始
+    function start(){
+        timer = setInterval(addContent,80);
+    }
+    // 计时器停止
+    function stop(){
+        if(timer){
+            clearInterval(timer);
+        }
+    }
+
+    start();
+</script>
+</html>

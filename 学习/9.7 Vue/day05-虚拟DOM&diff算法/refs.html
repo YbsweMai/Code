@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div id="app">
+        <input type="text" ref="inputEle" value="hahahahaha">
+    <!-- id方式获取dom节点
+    ref方式一样可以获得dom节点 并且设置在组件上可以获取vue的组件实例 并且可以调用组件里任何东西 -->   
+        <button @click="getInputValue">通过ref获取input值</button>
+    <!-- 获取vue组件实例 见day04 homework -->
+    </div>
+</body>
+<script>
+
+    
+    let vm = new Vue({
+        el:'#app',
+        methods: {
+            getInputValue(){
+                console.log(this.$refs.inputEle.value)
+            }
+        },
+    })
+</script>
+</html>

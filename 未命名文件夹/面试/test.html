@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding : 0;
+            margin : 0;
+        }
+        /* span{
+            
+            line-height : 100px;
+            background-color : red;
+        } */
+
+        #div{
+            /* position : relative;
+            left : 100px; */
+            
+            /* height : 700px; */
+            /* margin : 20px auto; */
+            border : 5px solid red;
+        }
+
+        /* .div1{
+            position : absolute;
+            width : 100px;
+            height : 100px;
+            background-color : aqua;
+        } */
+        /* #div > .div1{
+            color : aqua;
+        } */
+
+        .div2{
+            
+            float : left;
+            width : 200px;
+            height : 200px;
+            background-color : aqua;
+        }
+
+
+
+ul{
+    /* font-size : 0; */
+    letter-spacing :-8px
+}
+
+li{
+    display : inline;
+    font-size : 12px;
+    letter-spacing :normal;
+/* float : left; */;
+list-style : none
+}
+        /* .div2{
+            position : absolute;
+            width : 200px;
+            height : 200px;
+            background-color : red;
+        } */
+
+        .parent {
+            position : relative;
+    height : 200px;
+        }
+
+        .child {
+        position : absolute;
+        top : 50%;
+        left : 50%;
+                /* width : 80px;
+        height : 40px; */
+        background : blue;
+        transform : translate(-50%, -50%);
+
+    }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="child">child</div>
+     </div>
+</body>
+</html>

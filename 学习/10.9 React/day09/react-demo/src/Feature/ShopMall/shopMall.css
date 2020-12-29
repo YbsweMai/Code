@@ -1,0 +1,100 @@
+.mall-container {
+    box-sizing : border-box;
+    display : flex;
+    flex-direction : column;
+}
+
+.mall-header {
+    display : flex;
+    align-items : center;
+    width : 100%;
+    height : 100px;
+    margin-left : 10px;
+    box-shadow : 1px 2px 10px rgb(168, 168, 168);
+}
+
+.mall-header h2 {
+    margin-left : 20px;
+}
+
+  .bcg {
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : center;
+    width : 1100px;
+    height : 200px;
+    margin : 30px auto;
+    font-size : 26px;
+    color : white;
+    background : url("../../Assets/jifen-background.png");
+}
+
+.shop {
+    width : 1100px;
+    margin : 0 auto;
+    margin-bottom : 20px;
+}
+
+.shop-container {
+    display : flex;
+    flex-wrap : wrap;
+    justify-content : space-between;
+    width : 100%;
+    height : 385px;
+    margin-top : 20px;
+    overflow : auto;
+}
+
+.shop-box {
+    display : flex;
+    flex-direction : column;
+    width : 200px;
+    padding : 15px;
+    margin-bottom : 20px;
+    border : 1px solid #eeeeee;
+}
+
+.shopName {
+    height : 22px;
+    margin-top : 10px;
+    overflow : hidden;
+}
+
+.point {
+display : flex;
+align-items : center;
+justify-content : space-between;
+margin-top : 10px;
+}
+
+.shop-box img {
+width : 200px;
+height : 200px;
+}
+
+.point-left {
+    display : flex;
+    align-items : center;
+    font-size : 14px;
+}
+
+.point-left span {
+    color : blueviolet;
+}
+
+.point-left img {
+    width : 20px;
+    height : 20px;
+    margin-right : 5px;
+}
+
+.point-right button {
+    width : 60px;
+    font-weight : 500;
+    color : white;
+    cursor : pointer;
+    background-color : blueviolet;
+    border : none;
+    border-radius : 5px;
+}

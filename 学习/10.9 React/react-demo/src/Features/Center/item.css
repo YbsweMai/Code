@@ -1,0 +1,35 @@
+.box-container{
+    display : flex;
+    flex-direction : column;
+    justify-content : space-around;
+    width : 400px;
+    padding : 80px 0;
+}
+
+.box-top{
+    position : relative;
+    z-index : 2;
+    width : 400px;
+    overflow : hidden;
+    cursor : pointer;
+    background : #fff;
+    border : 1px solid #eaeaea;
+    border-radius : 4px;
+
+}
+
+.box-title{
+    width : 388px;
+    height : 68px;
+    padding-left : 10px;
+    font-family : PingFangSC-Medium;
+    font-size : 18px;
+    line-height : 68px;
+    color : #000;
+    letter-spacing : 1.08px;
+}
+
+.box-top img{
+    width : 400px;
+    height : 255px;
+}

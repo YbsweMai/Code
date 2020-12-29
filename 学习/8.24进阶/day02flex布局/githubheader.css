@@ -1,0 +1,47 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.container{
+    display: flex;
+    height: 60px;
+    background-color: black;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left{
+    align-items: center;
+    display: flex;
+}
+
+.icon{
+    display: flex;
+    position: relative;
+}
+
+.left-input{
+    height: 20px;
+    margin-left: 20px;
+    border: 0;
+}
+
+.left-icon{
+    width: 20px;
+    height: 20px;
+    background-color: yellow;
+    position: absolute;
+    right: 0;
+}
+
+.left-a{
+    margin-left: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.header-right{
+    background-color: brown;
+    width: 60px;
+}

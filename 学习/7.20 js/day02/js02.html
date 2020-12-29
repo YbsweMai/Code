@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // var a = 300;
+    // var b = 200;
+    // var c = 50;
+
+    // var max = a > b ? (a > c ? a : c) : (b > c ? b : c) ;
+    // console.log(max);
+
+    // var a = 20;
+    // if(a>100){
+    //     console.log("1233")
+    // }
+    // else if(a>50){
+    //     console.log("1231333")
+    // }    
+    // else if(a>30){
+    //     console.log("999")
+    // }
+    // else{
+    //     console.log("0")
+    // }
+
+        // var height = 180;
+        // var handsome = 80;
+        // var rich = 80;
+
+        // if(height>=180 && handsome>=80 && rich>=80){
+        //     console.log('高富帅')
+        // }
+        // else if(height<180 && handsome>=80 && rich>=80){
+        //     console.log('富帅')
+        // }
+        // else if(height<180 && handsome<80 && rich>=80){
+        //     console.log('富')
+        // }
+        // else if(height<180 && handsome<80 && rich<80){
+        //     console.log('nothing')
+        // }
+        
+        // 获取100之间所有奇数之间的和
+        var sum = 0;
+        for (var a = 1; a <= 100; a++){
+            if(a%2 !=0){
+                sum += a;
+            }
+        }
+        console.log(sum)
+
+        // 水仙花数 153= 1*1*1+5*5*5=3*3*3
+        for (var a = 100; a <= 999; a++) {
+　　　　    var ge = a % 10
+　　　　    var shi = parseInt(a % 100 / 10)
+　　　  　  var bai = parseInt(a / 100)
+　　　  　  if (a === ge * ge * ge + bai * bai * bai + shi * shi * shi){
+　　　　    console.log(a + "是一个水仙花数")
+　　　　}
+　　}
+
+        // 反转字符串
+        var name ='asdasd'
+
+        var result = '';
+        for(var i = name.length - 1;i>=0;i--){
+
+
+            // console.log(name.charAt(i));
+
+            result += name.charAt(i) //  result =result + name.charAt(i) 
+
+        }
+
+        console.log(result);
+
+
+    
+</script>
+</html>

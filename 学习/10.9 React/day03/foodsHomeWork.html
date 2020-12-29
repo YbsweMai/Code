@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>food</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://unpkg.com/uuid@latest/dist/umd/uuidv4.min.js"></script>
+
+    <style>
+        #example{
+            height: 800px;
+            width: 550px;
+            margin: 0 auto;
+        
+        }
+
+        .container{
+                position: relative;
+                max-width: 500px;
+                height: 500px;
+                margin: 20px auto;
+                background-color: #fff;
+                border: solid 1px #f3f3f3;
+                padding: 50px;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px #999;
+            }
+            .li{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #f3f3f3;
+                padding: 10px 30px;
+                border-radius: 6px;
+                margin-bottom: 20px;
+            }
+            .all-price{
+                width: 200px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                height: 100px;
+                text-align: left;
+                font-size: 22px;
+                color: #333;
+            }
+            .pro-title{
+                font-size: 18px;
+                color: #333;
+            }
+            .pro-price{
+                font-size: 16px;
+                color: #333;
+                padding-right: 20px;
+            }
+            .pro-right{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                position: relative;
+            }
+            .pro-right img{
+                width: 50px;
+                height: 30px;
+                position: absolute;
+                right: -46px;
+                top: -14px;
+                transform: rotate(25deg);
+            }
+
+            /** 右侧按钮 */
+            .btn-box{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .btn-box span{
+                height: 30px;
+                background-color: #333;
+                color: white;
+                line-height: 30px;
+            }
+            .btn1{
+                width: 30px;
+                height: 30px;
+                background-color: #333;
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+                font-size: 16px;
+                color: #fff;
+                border: none;
+                padding: 0 0 0 7px;
+                outline: none;
+                cursor: pointer;
+            }
+            .btn2{
+                width: 30px;
+                height: 30px;
+                background-color: #333;
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+                font-size: 16px;
+                color: #fff;
+                border: none;
+                padding: 0 7px 0 0;
+                outline: none;
+                cursor: pointer;
+            }
+            .pro-num{
+                width: 20px;
+                line-height: 30px;
+                background-color: #333;
+                font-size: 16px;
+                color: #fff;
+                text-align: center;
+                height: 30px;
+                border: none;
+                outline: none;
+            }
+            .all-price{
+                width: 200px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                height: 100px;
+                text-align: left;
+                font-size: 22px;
+                color: #333;
+            }
+        </style>
+    </style>
+  </head>
+  <body>
+    <div id="example">
+
+    </div>
+    <script type="text/babel">  // jsx语法需要转义
+
+    class App extends React.Component {
+        constructor(){
+            super()
+            this.state = {
+                menu:[
+                        {id:'dcaf0261-059a-43ea-8d08-cf90600bca02',name: '香蕉', price: 10, count: 1},
+                        {id:'65a909e8-55c9-4695-a46b-bac2c7abe3be',name: '苹果', price: 20, count: 1},
+                        {id:'8b6b1c29-c1bc-49a3-824b-6d5950528b9b',name: '榴莲', price: 30, count: 1},
+                        {id:'4662f88b-9087-41a0-8e87-2fe23cca2e0a',name: '葡萄', price: 50, count: 1}
+                ],
+            }
+        }
+
+        addItem = (id)=>{
+
+            let menu = this.state.menu.map((item)=>{
+
+                if(item.id === id){
+                    if(item.count >= 4){
+                        alert('不能再多了')
+                        return item
+                    }else {
+                        return { ...item , count: item.count+1 }
+                    }
+                   
+                }else{
+                    return item;
+                }
+            })
+            
+            this.setState({
+                menu,
+                
+            });
+        }
+
+        lessItem = (id)=>{
+
+            let menu = this.state.menu.map((item)=>{
+
+                if(item.id === id){
+                    if(item.count <= 1){
+                        alert('不能再少了')
+                        return item
+                    }else{
+                        return { ...item , count: item.count-1}
+                    }
+                    
+                }else{
+                    return item;
+                }
+            })
+
+            this.setState({
+                menu
+            });
+        }
+
+        price = ()=> {
+                let allPrice = 0;
+                // for( let i = 0; i < this.state.menu.length;i++){
+                //     allPrice += this.state.menu[i].count * this.state.menu[i].price
+                // };
+                
+                this.state.menu.forEach((item)=>{
+                    allPrice += item.price * item.count
+                })
+                return allPrice
+        }
+
+        render(){
+            return (
+                <div >
+                    <div>
+                        <Menu menu={ this.state.menu } addItem={ this.addItem } lessItem={ this.lessItem }/>
+                    </div>
+                    
+                    <div className='container'>
+                        <Cart menu= { this.state.menu } addItem={ this.addItem } lessItem={ this.lessItem } Price={ this.price }/>
+                        
+                    </div>
+                    
+                </div>
+            )
+        }
+    }
+
+    class Menu extends React.Component{
+        constructor(){
+            super()
+        }
+
+        renderMenu = ()=>{
+
+            return this.props.menu.map((item)=>{
+
+                return (
+
+                    <div key={item.id} >
+                        { item.name } 
+                        <span onClick={ () => { this.props.lessItem(item.id) }}> - </span>
+                        { item.count }
+                        <span onClick={ () => { this.props.addItem(item.id) }}> + </span>
+                    </div>
+                )
+            })
+        }
+
+        render(){
+            return(
+                <div >
+                    { this.renderMenu() }
+                </div>
+            )
+        }
+    }
+
+    class Cart extends React.Component{
+        constructor(){
+            super()
+        }
+
+        renderCart = ()=>{
+
+            return this.props.menu.map((item)=>{
+
+                return (
+                        <div key={item.id} className="li">
+                            <p className="pro-title">{ item.name }</p>
+                            <div className="pro-right">
+                                <p className="pro-price">￥：{ item.price }</p>
+                                <div className="btn-box">
+                                    <button className="btn1" onClick={ () => { this.props.lessItem(item.id) }} >-</button>
+                                    <span>{ item.count }</span>
+                                    <button className="btn2" onClick={ () => { this.props.addItem(item.id) }}>+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                )
+            })
+        }
+
+            render(){
+                return(
+                    <div >
+                        { this.renderCart() }
+                        <h3 className='all-price'> 总价格:{ this.props.Price() }</h3>
+                    </div>  
+                )
+            }
+    }
+
+    ReactDOM.render(
+        <App/>,
+        document.getElementById('example')
+    );
+    </script>
+  </body>
+</html>

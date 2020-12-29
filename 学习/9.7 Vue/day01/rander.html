@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .list{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .bgblue{
+            background-color: blue;
+        }
+
+        .bgred{
+            background-color: red;
+        }
+
+        .bgorange{
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <div class="div1">
+            <h1>{{name}}</h1>
+        </div> -->
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let VueApp = {
+        template:`
+            <div>
+                <div v-for="(item,index) in list">
+                    <div :class="['list',index=== 0 ? 'bgblue':'', index===1 ? 'bgred':'', index===2 ? 'bgorange' :'']" v-if="item.sex==='女'">
+                            <h2>{{item.name}}
+                                <span v-if="item.price<item.oldPrice">折扣商品</span>
+                                <span v-else>原价销售</span>
+                            </h2>
+                            <h2>{{item.price}}</h2>
+                            <h2>{{item.sex}}</h2>
+                       
+                    </div>
+                </div>
+            </div>
+        `,
+        data(){
+            return{
+                name:'后裔',
+                list:[
+                    {name :'后裔', sex:'男',oldPrice:80,price:20},
+                    {name :'安其拉', sex:'女',oldPrice:80,price:80},
+                    {name :'程咬金', sex:'男',oldPrice:80,price:40},
+                ]
+            }
+        }
+    }
+
+    let vm = new Vue({
+        render: h=>h(VueApp)
+    }).$mount('#app')
+
+    /* 1.h是函数名，项目一般用h  2.(VueApp)里是名为h函数传进来的一个对象  3.$mount绑定id为app标签，相当于el */
+</script>
+</html>

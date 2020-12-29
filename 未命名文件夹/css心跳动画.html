@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            background-color: black;
+        }
+        .A{
+            width: 400px;
+            height: 800px;
+            /* border: 2px solid black; */
+            margin: 0 auto;
+            position: relative;
+            margin-top: 150px;
+            animation: heartbeat 0.5s infinite alternate;
+        }
+
+        .B{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            left: 40px;
+            border-radius: 50%;
+        }
+        .C{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            right: 40px;
+            border-radius: 50%;
+        }
+        .D{
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background-color: red;
+            left: 110px;
+            top: 84px;
+            transform: rotate(45deg);
+        }
+        @keyframes heartbeat{
+            from{}
+            to{
+                transform: scale(1.2);            }
+        }
+    </style>
+
+</head>
+<body>
+ <div class="A">
+     <div class="B"></div>
+     <div class="C"></div>
+     <div class="D"></div>
+ </div>
+</body>
+</html>

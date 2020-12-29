@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cat{
+            position : relative;
+            width : 500px;
+            height : 500px;
+            margin : 0 auto;
+            text-align : center;
+            background-color : blue;
+        }
+        .dog{
+            position : absolute;
+            top : 50%;
+            width : 100px;
+            height : 100px;
+            line-height : 100px;
+            background-color : red;
+            transform : translate(-50%,-50%);
+        }
+        /* .parents{
+            font-size: 0;
+        } */
+    </style>
+</head>
+<body>
+    <!-- <div class="A"></div> -->
+    <!-- <div class="B"></div> -->
+<!-- <div class="parents"> -->
+    <!-- <div class="cat">
+        <span class="dog">321</span>
+    </div>
+</div>
+
+     
+    </div> -->
+    
+</body>
+<script>
+// var sum = 0;
+// for(var i = 2;i < 100;i++){
+//     var flag = 0;
+//     for(var j = 2;j <i;j++){
+//         if(i % j == 0){
+//             flag++;
+//         }
+        
+//     } 
+//     if(flag == 0){
+//         sum = sum + i;
+//         }
+    
+// }
+// console.log(sum);
+
+// var sum = 0;
+// for(var i = 2; i<=100;i++){
+//     var flag = 1;
+//     for(var j = 2;j<i;j++){
+//         if(i % j == 0){
+//             flag=0
+//         }
+//     }
+//     if(flag=){
+//         sum = sum + i
+//     }
+// }
+// console.log(sum);
+// var sum = 0;
+// for(var i = 1;i <=100;i++){
+//     // var flag = 0;
+    
+//     if(i%2 !=0){
+//         sum = sum + i;
+//         }
+    
+// }
+// console.log(sum);
+
+// function push1(array, ...items) {
+//   array.push(...items);
+// }
+
+// let arr = [1,2,3,4,5,3,3,3,3,3,3]
+
+// // console.log(push1(...arr))
+// arr.map((items,index) => {
+//     if(arr[index] !== items){
+//         return arr
+//     }
+// })
+
+// console.log(arr)
+
+let arr1 = [0, 1, 2];
+let arr2 = [3, 4, 5];
+let arr3 = []
+arr3.push(...arr1,...arr2)
+console.log(arr3)
+arr1.push(...arr2)
+console.log(arr1)
+
+
+</script>
+
+</html>

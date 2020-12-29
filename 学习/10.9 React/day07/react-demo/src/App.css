@@ -1,0 +1,19 @@
+.main{
+  display: flex;
+  flex-direction: column;
+}
+
+.header{
+  height: 60px;
+  background-color: aqua;
+}
+
+.main-container{
+  display: flex;
+}
+
+.sider{
+  width:200px;
+  height:100vh;
+  background-color: bisque;
+}

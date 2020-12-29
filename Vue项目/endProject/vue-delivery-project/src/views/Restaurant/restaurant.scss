@@ -1,0 +1,48 @@
+@import '../../style/style.scss'; 
+
+.header-children {
+    position : relative;
+    top : 100px;
+}
+
+.containerBetween{
+    @extend .containerRow;
+}
+
+.rest-tab{
+    position : relative;
+    width : 30%;
+    height : auto;
+    margin-top : 30px;
+    margin-left : 30px;
+    line-height : 1;
+    word-break : break-all;
+    word-wrap : break-word;
+    @extend .h1 
+}
+.rectangle{
+    position : absolute;
+    left : 0;
+    width : 40px;
+    height : 8px;
+    margin-top : 3px;
+    line-height : 1;
+    word-break : break-all;
+    background-color : #202020;
+
+}
+
+.all-rest-box{
+    grid-column-gap : 20px;
+    -moz-column-gap : 20px;
+    -webkit-column-gap : 20px;
+    column-gap : 20px;
+    width : 100%;
+    margin-left : 100px;
+    -webkit-column-count : 2;
+    column-count : 2;
+}
+
+.rest-gap{
+    padding-top : 236px;
+}

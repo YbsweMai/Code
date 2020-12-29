@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father{
+            width: 300px;
+            height: 500px;
+            overflow: hidden;            /*图片放大后超出的部分隐藏*/
+            margin: 0 auto;
+        }
+        
+        .img{
+            width: 300px;
+            height: 500px;
+        }
+
+        .img:hover{
+            transform: scale(1.5);
+        }
+    </style>
+</head>
+<body>
+<div class="father">
+    <img class="img"  src="123.png" alt="">
+</div>
+</body>
+</html>

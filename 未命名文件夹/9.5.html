@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .left{
+        display : flex;
+        flex-direction : column;
+        width : 300px;
+        background-color : brown;
+    }
+
+    .left a {
+        height : 50px;
+        line-height : 50px;
+
+        text-decoration : none;
+        /* text-align: center; */
+    }
+
+    .left a:hover{
+        background-color : yellow;
+    }
+
+    .container{
+        display : flex;
+        width : 300px;
+        height : 600px;
+    }
+
+    .box1{
+        width : 200px;
+        height : 200px;
+        background-color : red;
+    }
+    .box2{
+        width : 200px;
+        height : 200px;
+        background-color : blue;
+    }
+    .box3{
+        width : 200px;
+        height : 200px;
+        background-color : yellow;
+    }
+</style>
+<body>
+
+    <!-- <div class="left">
+        <a href="">123</a>
+        <a href="">123</a>
+        <a href="">123</a>
+    </div> -->
+    <div class="container">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+    </div>
+
+</body>
+<script>
+    // for(let i = 1;i<=100;i++){
+    //     console.log('这个人今年' + i +'岁啦')
+    // }
+    // let num = 0
+    // for(let i = 1;i<=100;i++){
+    //     num += i
+    // }
+    // console.log(num)
+    // let num = prompt('班级总人数')
+    // let sum = 0;
+    // for(let i = 1; i<= num;i++){
+    //     let score = Number(prompt('请输入第'+i+'个学生成绩'))
+    //     sum += score;
+    //     console.log(sum)
+    // }
+    // alert('班级总成绩:'+ sum)
+    // let str = ''
+    // for(let i = 1; i<=10;i++){
+    //     for(let j = 1 ; j <= 10;j++){
+    //         str= str +'⭐️'
+    //     }
+    //     str += '\n'
+    // }
+    // console.log(str)
+        // var sum = 0
+        // var i = 1;
+        // do{
+        //     sum += i
+        //     i++
+        // }while (i <= 100)
+        // console.log(sum)
+
+        //     let abc = '我爱你'
+        //     let message;
+        // do{
+        //     message = prompt('你爱我吗')
+
+        // }while (message !== abc)
+    
+    // let sum = 0
+    // let abc;
+    // for ( let i = 1 ; i <= 100; i++){
+    //     if ( i % 7 != 0){
+    //         continue
+    //     }
+    //     sum += i
+    // }
+    // console.log(sum)
+
+    // let str = ''
+    // for ( i = 1; i<=5; i++){
+    //     for ( j = 1; j<= 5; j++){
+    //         str += '⭐️' 
+    //     }
+    //     str += '\n'
+    // }
+    // console.log(str)
+
+    // let str = ''
+    // for ( i = 1; i <= 5;i++ ){
+    //     for ( j = 1; j<= i; j++){
+    //         str += '⭐️'
+    //     }
+    //     str += '\n'
+    // } 
+    // console.log(str)
+
+    // let str = ''
+    // for ( i = 1; i<=9;i++){
+    //     for (j =1; j <= i;j++){
+    //         str += j + 'x' + i + '=' + i * j
+
+    //     }
+    //     str += '\n'
+        
+    // }
+    // console.log(str)
+
+    // let user ;
+    // let pwd ;
+    // // let abc;
+
+    // do {
+    //     user = prompt('请输入用户名')
+    //     pwd = prompt('请输入密码')
+    // }while ( user != 'admin' && pwd != '123456' )
+// var init = 100
+    
+// var bank = prompt('请输入你要进行的操作 \n  1.存钱 \n  2.取钱 \n  3.显示余额 \n  4.退出')
+
+// if(bank == 1){
+//     var cun = prompt('请输入存钱金额')
+//     alert('你现在的钱数是' + (Number(init) + Number(cun)))
+//     var cunAll = init + Number(cun)
+//     console.log(cunAll)
+        
+// }else if(bank == 2){
+//     var qu = prompt('请输入取钱金额')
+//     alert('你现在的钱数是' + (cunAll - Number(qu)))
+//     console.log(cunAll)
+
+// }else{
+//     alert('无效操作')
+// }
+
+// let data = [
+//     {id:1,name:'名称一',parentId:0},
+//     {id:2,name:'名称二',parentId:1},
+//     {id:3,name:'名称三',parentId:1},
+//     {id:4,name:'名称四',parentId:2},
+//     {id:5,name:'名称五',parentId:2},
+//     {id:6,name:'名称六',parentId:3},
+//     {id:7,name:'名称七',parentId:3},
+// ]
+
+
+// function arrData(data){
+    
+//      data.forEach((i) => {
+//          let parentId = i.parentId
+//          if(parentId){
+//              i.children = []
+//             data.forEach((d)=>{
+//                 if(d.parentId !== parentId  ){
+//                     i.children.push(d)
+//                 }
+//             })
+//          }
+//      });
+//      console.log(data)
+//      return data
+// }
+
+// arrData(data)
+
+
+// const oldData = [
+//   {id:1,name:'boss',parentId:0},
+//   {id:2,name:'lily',parentId:1},
+//   {id:3,name:'jack',parentId:1},
+//   {id:4,name:'john',parentId:2},
+//   {id:5,name:'boss2',parentId:0},
+// ]
+ 
+ 
+// function listToTree(oldArr){
+//   oldArr.forEach(element => {
+//     let parentId = element.parentId;
+//     if(parentId !== 0){
+//       oldArr.forEach(ele => {
+//         if(ele.id == parentId){ //当内层循环的ID== 外层循环的parendId时，（说明有children），需要往该内层id里建个children并push对应的数组；
+//           if(!ele.children){
+//             ele.children = [];
+//           }
+//           ele.children.push(element);
+//         }
+//       });
+//     }
+//   });
+// //   console.log(oldArr) //此时的数组是在原基础上补充了children;
+// //   oldArr = oldArr.filter(ele => ele.parentId === 0); //这一步是过滤，按树展开，将多余的数组剔除；
+// //   console.log(oldArr)
+//   return oldArr;
+// }
+// listToTree(oldData);
+
+
+</script>
+</html>

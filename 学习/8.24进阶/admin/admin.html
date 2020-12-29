@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="max1024.css" media="only screen and (min-width:1024px)">
+    <link rel="stylesheet" href="min1024.css" media="only screen and (max-width:1023px)">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="preload"> <!-- 载入 -->
+    <div class="header"></div>
+
+    <div class="main-container">
+        <div class="sider">
+
+        </div>
+
+        <div class="content-container">
+            <div class="content">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                            <th>Operation</th>
+                        </tr>
+                    </thead>  
+                    
+                    <tbody class="table">
+                        <tr>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>john@example.com</td>
+                            <td>
+                                <button type="button" class="btn btn-primary">修改</button>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                    <tbody class="table">
+                        <tr>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>john@example.com</td>
+                            <td>
+                                <button type="button" class="btn btn-primary">修改</button>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                    <tbody class="table">
+                        <tr>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>john@example.com</td>
+                            <td>
+                                <button type="button" class="btn btn-primary">修改</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>               
+            </div>
+            <div class="footer"></div>
+        </div>
+    </div>
+
+    <div class="admin-modal">
+        <div class="modal-container"></div>
+    </div>
+</body>
+<script>
+    let table = document.getElementsByClassName('table')[0]
+
+    let modal = document.getElementsByClassName('admin-modal')[0]
+
+    table.onclick = function(e){
+        let target = e.target
+
+        if(target.className === 'btn btn-primary'){
+            modal.style.display = 'flex'
+        }
+    }
+
+    modal.onclick = function(e){
+
+        if(e.target.className === 'admin-modal'){
+            modal.style.display = 'none'
+        }
+    }
+</script>
+</html>

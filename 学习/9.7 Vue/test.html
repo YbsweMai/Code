@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <p>{{reverseMsg}}</p>
+        <p>{{ fullName }}</p>
+
+        <button @click="hideDiv">显示隐藏</button>
+        <div :style="{display:isDisplay ?'block' : 'none'}"> 
+            香蕉单价:<input type="text" v-model="bananPrice">
+            <br/>
+            购买数量:<input type="text" v-model="count">
+            <br/>
+            计算购买总价:{{allPrice}}
+            <!-- 计算属性有缓存 属性值不变时再次使用可以直接取出 -->
+            <br/>
+            方法购买总价:{{allPrice1()}}
+            <!-- 用方法计算时 不缓存 每次都需要重新计算 -->
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return{
+                msg:'Hello Vue',
+                firstName:'K',
+                lastName:'K',
+                bananPrice:30,
+                count:1,
+                isDisplay:true
+            }
+        },
+        computed:{
+            allPrice(){
+                return this.bananPrice * this.count
+            },
+            // allPrice(){
+            //     return function(a){
+            //         return this.bananPrice * this.count * a
+            //     }
+            // },
+            /* computed传参方法 */
+
+            reverseMsg(){
+                return this.msg.split('').reverse().join('')
+                
+            },
+
+            fullName(){
+                return this.firstName + this.lastName
+            }
+        },
+        methods:{
+
+            allPrice1(){
+                return this.bananPrice * this.count
+            },
+
+            hideDiv(){
+                this.isDisplay = !this.isDisplay
+            }
+        },
+        
+    })
+</script>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+            <!-- <div v-for="(item,index) in list">
+                <h2>{{item}}</h2> -->
+                
+            </div>
+        
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    let VueApp = {
+
+        template:`
+                <div>
+                    <p v-text="text"></p>
+                    <div v-html="html"></div>
+                    <p>{{allCount()}}</p>       
+                </div>
+        `,
+        data(){
+            return {
+                text:'<span>span</span>',
+                html:'<span>span</span>',
+            }
+        },
+
+        methods:{
+
+            fun1(){
+                console.log(1)
+            },
+
+            fun2(){
+                return Math.random()
+            },
+
+            allCount(){
+
+                let time = new Date()
+
+                let y = time.getFullYear(); //获取完整的年份(4位,1970-????)
+
+                let m = time.getMonth()+1; //获取当前月份(0-11,0代表1月) // 所以获取当前月份是time.getMonth()+1;
+
+                let d = time.getDate(); //获取当前日(1-31)
+
+                let h = time.getHours(); //获取当前小时数(0-23)
+
+                let min =  time.getMinutes(); //获取当前分钟数(0-59)
+
+                let s = time.getSeconds()
+                
+                let data = y +'年' + m  +'月' + d +'日'+ h +'时' + min+'分' + s+'秒'
+
+                console.log(data)
+            }
+        },
+
+        created(){
+            this.fun1()
+            console.log('取数据',this.text)
+            this.fun2()
+            console.log(Math.random())
+        }
+    }
+
+    let vm = new Vue({
+        render:h=>h(VueApp)
+    }).$mount('#app')
+
+</script>
+</html>

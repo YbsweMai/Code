@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* .cat{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            margin: 0 auto;
+        }
+
+        .cat:hover{
+            width: 500px;
+            height: 500px;
+            background-color: red;
+            transform: rotate(50deg);
+        } */
+        .father{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;        
+            margin: 0 auto;
+            margin-top: 200px ;
+        }
+
+        .son{
+            width: 30px;
+            height: 30px;
+            background-color: bisque;
+            animation: move linear 2s alternate 5 forwards;
+        }
+        /* linar匀速运动 2s动画时间 alternate动画完成后再反向执行  forwards动画结束后停留在最后一帧*/
+
+        @keyframes move{
+            0%{
+                transform: translateX(0);
+            }
+            33%{
+                transform: translateX(170px);
+            }
+            66%{
+                transform:translate(0,170px);
+            }
+            100%{
+                transform:translate(170px,170px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="cat"></div> -->
+    <div class="father">
+        <div class="son"></div>
+    </div>
+</body>
+</html>

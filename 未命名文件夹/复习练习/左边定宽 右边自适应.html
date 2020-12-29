@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 定宽自适应 定宽边需要flort(左边定宽left 右边right) 
+        自适应边(宽或长）不加宽或长 再加上margin-left(左边left 右边right）方式移动时被其他边覆盖内容 
+        自适应边需要写在最下面！！！ */
+         *{
+         padding: 0;
+         margin: 0;
+     }
+     .parent{
+         width: 100%;
+         height: 500px;
+         background-color: aqua;
+         margin: 0 auto;
+     }
+     .left{
+         width: 400px;
+         height: 500px;
+         background-color: red;
+         float: left;
+     }
+
+     .right{
+         height: 500px;
+         background-color: green;
+         margin-left: 400px;
+     }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+    
+</body>
+</html>

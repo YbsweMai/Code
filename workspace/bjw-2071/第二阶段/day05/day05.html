@@ -1,0 +1,200 @@
+<div>
+
+	<div class="test" id="test">
+
+		<div class='test' id='test-wirte'></div>
+		<!-- 查看节点 -->
+		<input type="text" id="input" value="123222222" class='input-test' onfocus="console.log('focus')">
+
+		<div id='main'>
+            <!-- 这是一行注释 -->
+			<div class="content red"></div>
+
+			<div class="content"></div>
+
+			<div class="content red"></div>
+		</div>
+
+		<div id="parent">
+            <!-- <p>12312</p> -->
+
+
+        </div>
+
+        <pre>
+
+            tbody.insertRow(0);
+            tbody.rows[0].insertCell(0);
+            tbody.rows[0].cells[0].appendChild(document.createTextNode("Cell 1, 1"));
+        </pre>
+    </div>
+    
+
+    <div class="click" ></div>
+</div>
+
+<style>
+
+	.content{
+		width: 100px;
+		height: 20px;
+	}
+
+	.red{
+
+		background-color: red;
+
+    }
+    
+    .click{
+        width: 200px;
+        height: 200px;
+        background-color: aqua;
+    }
+</style>
+
+<script>
+
+// var ele = document.getElementById('test');
+
+// var eles1 = document.getElementsByClassName('test');
+
+// var eles2 = document.getElementsByTagName('div');
+
+// console.log(eles2);
+
+// var eles = ele.getElementsByTagName('div');
+
+// console.log(eles);
+
+// var inputEle = document.getElementById('input');
+
+// var val = inputEle.getAttribute('value');
+
+// console.log(val);
+// console.log(inputEle.value);
+
+// inputEle.setAttribute('value','测试1231');
+
+// var obj = {
+//     class:'input-xxx',
+//     value:'123',
+//     getAttribute: function(val){
+//         val = 'class'
+//         return this[val]; this.class
+
+//         // return this.name;
+//     }
+// }
+
+// console.log(obj.getAttribute('class'));
+
+// var elementByCssId = document.querySelector('#test')
+
+// var eles = document.getElementsByClassName('test'); // ===> []
+
+// console.log(eles);
+
+// var elementByCssClass = document.querySelector('.test')
+
+// console.log(elementByCssClass);
+
+// var allElementByCssClass = document.querySelectorAll('.test')
+
+// console.log(allElementByCssClass)
+
+// var mainEle = document.getElementById('main');
+// var childrenNodes = mainEle.childNodes;
+
+// console.log(childrenNodes);
+
+// for(var i = 0; i< childrenNodes.length;i++){
+
+//     console.log(childrenNodes[i].className);
+//     // element
+//     if(childrenNodes[i].nodeType === 1 && childrenNodes[i].className.includes('red')){
+    
+//         childrenNodes[i].style.backgroundColor = 'yellow'
+//     }
+// }
+
+// document.getElementById('test-wirte').innerHTML = '123';
+
+// var para = document.createElement('p');
+	
+// var parent = document.getElementById('parent');
+
+// parent.appendChild(para);
+
+// para.innerHTML = 'hello';
+
+// var txt = document.createTextNode('hello world');
+	
+// para.appendChild(txt);
+// var table = document.createElement("table");
+// table.border = 1;
+// var tbody = document.createElement("tbody");
+// table.appendChild(tbody);
+
+// tbody.insertRow(0);
+// tbody.rows[0].insertCell(0);
+// tbody.rows[0].cells[0].appendChild(document.createTextNode("Cell 1, 1"));
+
+// tbody.rows[0].insertCell(1);
+// tbody.rows[0].cells[1].appendChild(document.createTextNode("Cell 2, 1"));
+
+// tbody.insertRow(1);
+
+// tbody.rows[1].insertCell(0);
+// tbody.rows[1].cells[0].appendChild(document.createTextNode("Cell 1, 2"));
+
+// tbody.rows[1].insertCell(1);
+// tbody.rows[1].cells[1].appendChild(document.createTextNode("Cell 2, 2"));
+
+// document.body.appendChild(table);
+
+// function test(){
+
+//     console.log('test');
+// }
+
+
+// function mclick(){
+
+//     console.log('click');
+// }
+
+// var a = function (){
+
+// };
+
+// var obj = {
+
+//     click : function(){
+//         console.log('11');
+//     },
+
+//     onclick: function(){
+
+//         onclick();
+//     }
+// }
+
+function test(){
+
+    console.log(111);
+}
+
+function click(){
+
+    console.log('click');
+}
+
+
+var ele = document.getElementsByClassName('click')[0];
+
+// ele.onclick = click;
+
+ele.addEventListener('click',click)
+
+</script>

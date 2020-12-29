@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .test{
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+        }
+
+        .div1{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+
+        .div2{
+            width: 150px;
+            height: 150px;
+            background-color: blue;
+        }
+
+        .div3{
+            border: 5px solid #f97197;
+            border-radius: 50%;
+        }
+
+        .div4{
+            box-shadow: 10px 10px 10px 10px hotpink;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 表达式里需要加上 ' ' -->
+        <div v-bind:class="{ test:isActive }"></div>
+        <!-- 给这个div绑定一个类名为test -->
+        <div :class="{ test:isActive }"></div>
+        <!-- 简写 -->
+        <div :style="{ backgroundColor:'red',width:'200px',height:'200px'}"></div>
+        <!-- 行内绑定样式 -->
+        <div :class="'div1'"></div>
+        <!-- 不需要判断时 直接绑定一个div1样式 -->
+        <div :class="['div2','div3']"></div>
+        <!-- 需要绑定多个元素时，需要加上[ ] -->
+        <div :class="['div2', isRadius ? 'div3' : '', isShadow ? 'div4' : '']"></div>
+        <!-- 三元表达式写法 -->
+        <div :style="{backgroundColor:isActive ? 'red':'yellow',height:'500px',width:'500px'}"></div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let app = new Vue({
+        el:'#app',
+        data(){
+            return{
+                isActive: true,
+                isRadius: true,
+                isShadow: true,
+            }
+        }
+    })
+</script>
+</html>
